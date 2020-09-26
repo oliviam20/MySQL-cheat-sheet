@@ -618,3 +618,25 @@ WHERE customer_id IN (SELECT customer_id
 					  FROM customers
 					  WHERE points > 3000)
 ```
+
+## Deleting Rows
+
+Delete records from a table.
+
+If you omit the `WHERE` clause, it will delete **everything** from that table.
+
+```
+-- Example 1
+USE sql_invoicing;
+DELETE FROM invoices
+WHERE invoice_id = 1;
+
+
+// Deleting using subquery
+-- Example 2
+USE sql_invoicing;
+DELETE FROM invoices
+WHERE client_id = (SELECT * 
+				   FROM clients
+				   WHERE name = 'Myworks')
+```
