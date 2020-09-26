@@ -436,3 +436,24 @@ VALUES ('hammer', 100, 5.00),
        ('car', 431, 15.00)
 ```
 ![products table](products-table.png)
+
+## Insert hierarchical rows - insert into multiple tables
+
+Orders table:
+![orders table](orders-table.png)
+
+Orders attributes table:
+![orders attributes](orders-attributes.png)
+
+Order items attributes:
+![orders items attributes](order-items-attributes.png)
+
+In orders items attributes, there is 2 primary keys. To get the primary key of `order_id`, we use `LAST_INSERT_ID()` to get the id that was last inserted (which is the `order_id` from the `orders` table). We manually set the `product_id`.
+```
+INSERT INTO orders (customer_id, order_date, status)
+VALUES (1, '2019-01-02', 1);
+
+INSERT INTO order_items
+VALUES (LAST_INSERT_ID(), 1, 1, 2.95),
+	     (LAST_INSERT_ID(), 2, 1, 3.95)
+```
