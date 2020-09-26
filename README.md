@@ -391,7 +391,8 @@ VALUES (
 )
 ```
 
-Can optionally declare what values we want to supply in `INSERT INTO` with `()`. This allows us to add values without having to include `DEFAULT` or `NULL` to columns we have no values for. This also allows us to change the order of the columns e.g. we swapped `last_name` and `first_name`.
+
+In example 2, we can optionally declare what values we want to supply in `INSERT INTO` with `()`. This allows us to add values without having to include `DEFAULT` or `NULL` to columns we have no values for. This also allows us to change the order of the columns e.g. we swapped `last_name` and `first_name`.
 ```
 -- EXAMPLE 2
 
@@ -412,3 +413,26 @@ VALUES (
   'NSW'
 )
 ```
+
+
+## Insert multiple rows
+
+```
+-- EXAMPLE 1
+
+INSERT INTO shippers (name)
+VALUES ('Shipper1'),
+	     ('Shipper2'),
+       ('Shipper3')
+```
+
+
+![products column attributes](products-attributes.png)
+```
+-- EXAMPLE 2
+INSERT INTO products (name, quantity_in_stock, unit_price)
+VALUES ('hammer', 100, 5.00),
+       ('dolly', 300, 7.00),
+       ('car', 431, 15.00)
+```
+![products table](products-table.png)
