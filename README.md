@@ -2,7 +2,7 @@
 
 [Youtube Tutorial - MySQL Tutorial for Beginners](https://www.youtube.com/watch?v=7S_tz1z_5bA&ab_channel=ProgrammingwithMosh)
 
-### LIKE
+## LIKE
 Return customers born between 1/1/1990 and 1/1/2000
 ```
 SELECT *
@@ -10,7 +10,7 @@ FROM customers
 WHERE birth_date BETWEEN '1990-01-01' AND '2000-01-01'
 ```
 
-### REGEXP
+## REGEXP
 ```
 SELECT *
 FROM customers
@@ -21,7 +21,7 @@ WHERE last_name REGEXP 'B[RU]'
 WHERE last_name REGEXP 'BR|BU'
 ```
 
-### ORDER BY
+## ORDER BY
 order rows by largest total price
 ```
 SELECT *, quantity * unit_price AS total_price
@@ -30,7 +30,7 @@ WHERE order_id = 2
 ORDER BY total_price DESC
 ```
 
-### Inner Join
+## Inner Join
 Inner Join - Join 2 tables and set the customer ids from orders and customers table to be matching on the same row.
 
 Inner is optional, it can be written either `JOIN` or `INNER JOIN`
@@ -57,7 +57,7 @@ JOIN products p
 ON oi.product_id = p.product_id
 ```
 
-### Joining tables across databases
+## Joining tables across databases
 ```
 USE sql_inventory;
 SELECT * FROM sql_store.order_items oi
@@ -65,7 +65,7 @@ JOIN products p
 ON oi.product_id = p.product_id
 ```
 
-### Self joins
+## Self joins
 Useful when we want to join tables by itself to display info from the same table showing only columns we want.
 ```
 USE sql_hr;
@@ -80,7 +80,7 @@ JOIN employees m
 ON e.reports_to = m.employee_id
 ```
 
-### Join more than 2 tables
+## Join more than 2 tables
 ```
 --- EXAMPLE 1
 
@@ -113,7 +113,7 @@ JOIN invoices i
   ON p.invoice_id = i.invoice_id
 ```
   
-### Compound join conditions
+## Compound join conditions
 This doesnt work :/ Need to find another example
 ```
 USE sql_store;
@@ -124,7 +124,7 @@ JOIN order_items_notes oin
   AND oi.product_id = oin.product_id
 ```
   
-### Implicit join syntax
+## Implicit join syntax
 Combine tables in FROM, and add WHERE instead of ON
 ```
 SELECT *
@@ -132,7 +132,7 @@ FROM orders o, customers c
 WHERE o.customer_id = c.customer_id
 ```
 
-### Outer joins - LEFT, RIGHT
+## Outer joins - LEFT, RIGHT
 Can be written either `LEFT JOIN` or `RIGHT JOIN`.
 
 Useful when you need to return records that doesn't completely match the `ON` condition.
@@ -170,7 +170,7 @@ LEFT JOIN order_items oi
 ORDER BY p.product_id
 ```
 
-### OUTER joins between multiple tables
+## OUTER joins between multiple tables
 ```
 --- EXAMPLE 1
 
@@ -206,7 +206,7 @@ JOIN order_statuses os
 ORDER BY o.order_id
 ```
 
-### Self outer joins
+## Self outer joins
 `LEFT JOIN` here will get EVERY employee from the `employees e` table whether they have a manager or not.
 ```
 USE sql_hr;
@@ -219,7 +219,7 @@ LEFT JOIN employees m
   ON e.reports_to = m.employee_id
 ```
 
-### USING clause
+## USING clause
 Useful when column names are exactly the same across tables.
 
 `USING (customer_id)` is the same as `ON o.customer_id = c.customer_id`.
@@ -255,7 +255,7 @@ JOIN clients c
   USING (client_id)
 ```
 
-### Natural JOINS
+## Natural JOINS
 This is dangerous because we are letting MySQL to work out the columns itself.
 
 Natural joins will join them based on common columns (columns with same name).
@@ -268,7 +268,7 @@ FROM orders o
 NATURAL JOIN customers c
 ```
 
-### CROSS join
+## CROSS join
 Explicit syntax - `CROSS JOIN`
 
 Implicit syntax - multiple tables in `FROM`
@@ -303,7 +303,7 @@ FROM shippers sh, products p
 ORDER BY sh.name
 ```
 
-### UNIONS
+## UNIONS
 Combine records/results from multiple queries
 ```
 --- EXAMPLE 1
@@ -354,7 +354,7 @@ WHERE points > 3000
 ORDER BY first_name
 ```
 
-### Insert a single row
+## Insert a single row
 
 ![customers column attributes](column-attributes.png)
 
@@ -362,7 +362,7 @@ Here we are inserting 1 row into the customers table.
 
 The first `DEFAULT` is for the primary key `id` which will auto increment.
 
-The others that have values e.g. `'John', 'Smith', '1990-01-01'` must be provided because they are `NN` which means NOT NULL. So you cannot pass `null`.
+The others that have values e.g. `'John', 'Smith'` must be provided because they are `NN` which means NOT NULL. So you cannot pass `null`.
 
 If the column is marked optional (`NN` is not checked, then `DEFAULT` or `NULL` can be passed in).
 
