@@ -356,11 +356,17 @@ ORDER BY first_name
 
 ## Insert a single row
 
+`INT` integer
+
+`VARCHAR(50)` maximum 50 characters. If less than 50 characters, it will only take up the space needed. E.g. `Teddy` takes up only 5 spaces. Use `VARCHAR` over `CHAR`
+
+`CHAR(50)` maximum 50 characters. If less than 50 characters, it will still take up all 50 spaces.
+
 ![customers column attributes](column-attributes.png)
 
 Here we are inserting 1 row into the customers table.
 
-The first `DEFAULT` is for the primary key `id` which will auto increment.
+The first `DEFAULT` is for the primary key `customer_id` which will auto increment (`AI` is checked).
 
 The others that have values e.g. `'John', 'Smith'` must be provided because they are `NN` which means NOT NULL. So you cannot pass `null`.
 
