@@ -528,3 +528,42 @@ SET
 WHERE invoice_id = 3
 ```
 
+## Updating multiple rows
+
+MySQL workbench will throw error if trying to update multiple rows. This can disabled through `Preferences`.
+
+Open `MYSQLWorkbench` > `Preferences` > `SQL Editor` > scroll down and uncheck `Safe Updates (rejects UPDATEs and DELETEs with no restrictions)` > 'OK'
+
+Restart your local database to have above changes take into effect.
+
+```
+// Example 1 will update all rows that have `client_id = 3`
+
+-- EXAMPLE 1
+
+USE sql_invoicing;
+UPDATE invoices
+SET 
+  payment_total = invoice_total * 0.5,
+  payment_date = due_date
+WHERE client_id = 3
+
+// Example 2 wll update all rows that have client_id of 3, 4
+
+-- Example 2
+
+USE sql_invoicing;
+UPDATE invoices
+SET 
+  payment_total = invoice_total * 0.5,
+  payment_date = due_date
+WHERE client_id IN (3, 4)
+
+-- Example 3
+
+USE sql_store;
+UPDATE customers
+SET 
+  points = points + 50
+WHERE birth_date < '1990-01-01'
+```
