@@ -501,3 +501,30 @@ JOIN clients c
   USING (client_id)
 WHERE i.payment_date IS NOT NULL
 ```
+
+## Updating a single Row
+
+```
+-- EXAMPLE 1
+
+UPDATE invoices
+SET payment_total = 10, payment_date = '2019-03-01'
+WHERE invoice_id = 1
+
+-- EXAMPLE 2
+
+UPDATE invoices
+SET payment_total = DEFAULT, payment_date = NULL
+WHERE invoice_id = 1
+
+// In example 3, we are using the data from the columns of the invoices table.
+
+-- EXAMPLE 3
+
+UPDATE invoices
+SET 
+  payment_total = invoice_total * 0.5,
+  payment_date = due_date
+WHERE invoice_id = 3
+```
+
