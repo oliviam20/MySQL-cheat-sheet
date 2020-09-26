@@ -353,3 +353,34 @@ FROM customers
 WHERE points > 3000
 ORDER BY first_name
 ```
+
+### Insert a single row
+
+![customers column attributes](column-attributes.png)
+
+Here we are inserting 1 row into the customers table.
+
+The first `DEFAULT` is for the primary key `id` which will auto increment.
+
+The others that have values e.g. `'John', 'Smith', '1990-01-01'` must be provided because they are `NN` which means NOT NULL. So you cannot pass `null`.
+
+If the column is marked optional (`NN` is not checked, then `DEFAULT` or `NULL` can be passed in).
+
+The last `DEFAULT` will assign that column the default value, in this case it's `0`. 
+
+```
+-- EXAMPLE 1
+
+INSERT INTO customers
+VALUES (
+  DEFAULT,
+  'John',
+  'Smith',
+  '1990-01-01',
+  NULL,
+  '1 address',
+  'Sydney',
+  'NSW',
+  DEFAULT
+)
+```
