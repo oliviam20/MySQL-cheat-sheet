@@ -1,6 +1,6 @@
 # SQL cheat sheet
 
-[Youtube Tutorial - MySQL Tutorial for Beginners](https://www.youtube.com/watch?v=7S_tz1z_5bA&ab_channel=ProgrammingwithMosh)
+[Youtube Tutorial - MySQL Tutorial for Beginners By Programming With Mosh](https://www.youtube.com/watch?v=7S_tz1z_5bA&ab_channel=ProgrammingwithMosh)
 
 ## LIKE
 Return customers born between 1/1/1990 and 1/1/2000
