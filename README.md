@@ -457,3 +457,47 @@ INSERT INTO order_items
 VALUES (LAST_INSERT_ID(), 1, 1, 2.95),
 	     (LAST_INSERT_ID(), 2, 1, 3.95)
 ```
+
+## Create a copy of a table
+
+The first block of SQL query copies everything (including columns and data) from the `orders` table. It will create a new table `orders_archived` and will have all the data from `orders` table. Right click on `orders_archived` and `truncate table` to delete all data from the table. Then run the 2nd query block. This will add orders that were created before `1st Jan 2019`.
+
+```
+CREATE TABLE orders_archived AS
+SELECT * FROM orders;
+
+INSERT INTO orders_archived
+SELECT *
+FROM orders
+WHERE order_date < '2019-01-01'
+```
+
+
+In second example, we are creating a new table `invoices_archived` by getting data from tables `invoices` and `clients`. 
+
+We join the `invoices` and `clients` table and match up the data `USING (client_id)`. We also only want to show rows that have a `payment_date`.
+
+Then we describe which columns we want from the two tables in the `SELECT` clause.
+
+Finally, we add `CREATE TABLE invoices_archived AS` to create the table with the following query.
+
+If this block of query is run more than once, it'll throw error. You'll need to drop the `invoices_archived` table to run the query again.
+```
+-- EXMAPLE 2
+
+USE sql_invoicing;
+CREATE TABLE invoices_archived AS
+SELECT
+  i.invoice_id,
+  i.number,
+  c.name AS client,
+  i.invoice_total,
+  i.payment_total,
+  i.invoice_date,
+  i.payment_date,
+  i.due_date
+FROM invoices i
+JOIN clients c
+  USING (client_id)
+WHERE i.payment_date IS NOT NULL
+```
