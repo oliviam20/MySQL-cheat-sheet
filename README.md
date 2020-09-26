@@ -390,3 +390,25 @@ VALUES (
   DEFAULT
 )
 ```
+
+Can optionally declare what values we want to supply in `INSERT INTO` with `()`. This allows us to add values without having to include `DEFAULT` or `NULL` to columns we have no values for. This also allows us to change the order of the columns e.g. we swapped `last_name` and `first_name`.
+```
+-- EXAMPLE 2
+
+INSERT INTO customers (
+  last_name,
+  first_name,
+  birth_date,
+  address,
+  city,
+  state
+)
+VALUES (
+  'Smith',
+  'John',
+  '1990-01-01',
+  '1 address',
+  'Sydney',
+  'NSW'
+)
+```
