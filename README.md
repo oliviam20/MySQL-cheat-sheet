@@ -2,6 +2,10 @@
 
 [Youtube Tutorial - MySQL Tutorial for Beginners By Programming With Mosh](https://www.youtube.com/watch?v=7S_tz1z_5bA&ab_channel=ProgrammingwithMosh)
 
+Download `SQL Course Materials` from this repo.
+
+In MySQLWorkbench, run local database and click `File` > `SQL Script` > `create-databases.sql`. Run this query.
+
 To run query in MySqlWorkbench, click the lightning bolt or hold `CMD` + `Shift` + `Enter`
 
 ## LIKE
