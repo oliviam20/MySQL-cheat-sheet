@@ -35,6 +35,8 @@ Inner Join - Join 2 tables and set the customer ids from orders and customers ta
 
 Inner is optional, it can be written either `JOIN` or `INNER JOIN`
 ```
+--- EXAMPLE 1
+
 SELECT
   order_id,
   o.customer_id,
@@ -47,6 +49,8 @@ JOIN customers c
 ```
 
 ```
+--- EXAMPLE 2
+
 SELECT order_id, oi.product_id, name, quantity, oi.unit_price
 FROM order_items oi
 JOIN products p
@@ -78,6 +82,8 @@ ON e.reports_to = m.employee_id
 
 ### Join more than 2 tables
 ```
+--- EXAMPLE 1
+
 USE sql_store;
 SELECT
   o.order_id,
@@ -93,6 +99,8 @@ JOIN order_statuses os
 ```
 
 ```
+--- EXAMPLE 2
+
 -- date, invoice_id, amoutn, client name, payment method name
 USE sql_invoicing;
 SELECT date, p.invoice_id, i.payment_total, c.name, pm.name
@@ -136,6 +144,8 @@ Useful when you need to return records that doesn't completely match the `ON` co
 `RIGHT JOIN` returns all the records from the right table (ie orders) regardless of the ON condition.
 
 ```
+--- EXAMPLE 1
+
 SELECT 
   c.customer_id,
   c.first_name,
@@ -148,6 +158,8 @@ ORDER BY c.customer_id
 ```
 
 ```
+--- EXAMPLE 2
+
 SELECT
   p.product_id,
   p.name,
@@ -160,6 +172,8 @@ ORDER BY p.product_id
 
 ### OUTER joins between multiple tables
 ```
+--- EXAMPLE 1
+
 SELECT
   c.customer_id,
   c.first_name,
@@ -174,6 +188,8 @@ ORDER BY c.customer_id
 ```
 
 ```
+--- EXAMPLE 2
+
 SELECT
   o.order_id,
   o.order_date,
@@ -208,6 +224,8 @@ Useful when column names are exactly the same across tables.
 
 `USING (customer_id)` is the same as `ON o.customer_id = c.customer_id`.
 ```
+--- EXAMPLE 1
+
 USE sql_store;
 SELECT
   o.order_id,
@@ -222,6 +240,8 @@ LEFT JOIN shippers sh
 ```
 
 ```
+--- EXAMPLE 2
+
 USE sql_invoicing;
 SELECT 
   p.date,
@@ -257,6 +277,8 @@ Combine every record in the first table with ever record in the second table.
 
 Useful when you have table of sizes ('small', 'medium', 'large') and table of colours ('red', 'green', 'yellow') and want to combine them.
 ```
+--- EXAMPLE 1
+
 USE sql_store;
 SELECT 
   c.first_name AS customer,
@@ -267,6 +289,8 @@ ORDER BY c.first_name
 ```
 
 ```
+--- EXAMPLE 2
+
 USE sql_store;
 SELECT 
   sh.name AS shipper,
@@ -282,6 +306,8 @@ ORDER BY sh.name
 ### UNIONS
 Combine records/results from multiple queries
 ```
+--- EXAMPLE 1
+
 USE sql_store;
 SELECT 
   order_id,
@@ -299,6 +325,8 @@ WHERE order_date < '2019-01-01'
 ```
 
 ```
+--- EXAMPLE 2
+
 USE sql_store;
 SELECT 
   customer_id,
