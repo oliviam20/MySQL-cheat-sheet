@@ -31,7 +31,8 @@ ORDER BY total_price DESC
 ```
 
 ### Inner Join
-Inner Join - Join 2 tables and set the customer ids from orders and customers table to be matching on the same row
+Inner Join - Join 2 tables and set the customer ids from orders and customers table to be matching on the same row.
+
 Inner is optional, it can be written either `JOIN` or `INNER JOIN`
 ```
 SELECT
@@ -60,8 +61,8 @@ JOIN products p
 ON oi.product_id = p.product_id
 ```
 
-### self joins
-useful when we want to join tables by itself to display info from the same table showing only columns we want
+### Self joins
+Useful when we want to join tables by itself to display info from the same table showing only columns we want.
 ```
 USE sql_hr;
 SELECT
@@ -75,7 +76,7 @@ JOIN employees m
 ON e.reports_to = m.employee_id
 ```
 
-### oin more than 2 tables
+### Join more than 2 tables
 ```
 USE sql_store;
 SELECT
@@ -116,7 +117,7 @@ JOIN order_items_notes oin
 ```
   
 ### Implicit join syntax
-combine tables in FROM, and add WHERE instead of ON
+Combine tables in FROM, and add WHERE instead of ON
 ```
 SELECT *
 FROM orders o, customers c
@@ -124,11 +125,15 @@ WHERE o.customer_id = c.customer_id
 ```
 
 ### Outer joins - LEFT, RIGHT
-Cn be written either `LEFT JOIN` or `RIGHT JOIN`.
-Useful when you need to return records that doesn't completely match the ON condition.
-2 types of OUTER joins, RIGHT and LEFT.
-LEFT JOIN returns all the records from the left table (ie customers) regardless of the ON condition. It will return all customers even if they don't have order_id 
-RIGHT JOIN returns all the records from the right table (ie orders) regardless of the ON condition.
+Can be written either `LEFT JOIN` or `RIGHT JOIN`.
+
+Useful when you need to return records that doesn't completely match the `ON` condition.
+
+2 types of OUTER joins, `RIGHT` and `LEFT`.
+
+`LEFT JOIN` returns all the records from the left table (ie customers) regardless of the ON condition. It will return all customers even if they don't have order_id .
+
+`RIGHT JOIN` returns all the records from the right table (ie orders) regardless of the ON condition.
 
 ```
 SELECT 
@@ -186,7 +191,7 @@ ORDER BY o.order_id
 ```
 
 ### Self outer joins
-LEFT join here will get EVERY employee from the `employees e` table whether they have a manager or not.
+`LEFT JOIN` here will get EVERY employee from the `employees e` table whether they have a manager or not.
 ```
 USE sql_hr;
 SELECT 
@@ -199,8 +204,9 @@ LEFT JOIN employees m
 ```
 
 ### USING clause
-Useful when column names are exactly the same across tables
-`USING (customer_id)` is the same as `ON o.customer_id = c.customer_id`
+Useful when column names are exactly the same across tables.
+
+`USING (customer_id)` is the same as `ON o.customer_id = c.customer_id`.
 ```
 USE sql_store;
 SELECT
@@ -231,7 +237,8 @@ JOIN clients c
 
 ### Natural JOINS
 This is dangerous because we are letting MySQL to work out the columns itself.
-Natural joins will join them based on common columns (columns with same name)
+
+Natural joins will join them based on common columns (columns with same name).
 ```
 USE sql_store;
 SELECT 
@@ -243,8 +250,11 @@ NATURAL JOIN customers c
 
 ### CROSS join
 Explicit syntax - `CROSS JOIN`
+
 Implicit syntax - multiple tables in `FROM`
+
 Combine every record in the first table with ever record in the second table.
+
 Useful when you have table of sizes ('small', 'medium', 'large') and table of colours ('red', 'green', 'yellow') and want to combine them.
 ```
 USE sql_store;
