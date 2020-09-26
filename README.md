@@ -2,6 +2,8 @@
 
 [Youtube Tutorial - MySQL Tutorial for Beginners By Programming With Mosh](https://www.youtube.com/watch?v=7S_tz1z_5bA&ab_channel=ProgrammingwithMosh)
 
+To run query in MySqlWorkbench, click the lightning bolt or hold `CMD` + `Shift` + `Enter`
+
 ## LIKE
 Return customers born between 1/1/1990 and 1/1/2000
 ```
@@ -566,4 +568,53 @@ UPDATE customers
 SET 
   points = points + 50
 WHERE birth_date < '1990-01-01'
+```
+
+## Using Subqueries in Updates
+
+```
+// Here we dont know the exact client_id so we use a subquery to get the client_id
+-- Example 1
+
+USE sql_invoicing;
+UPDATE invoices
+SET 
+  payment_total = invoice_total * 0.5,
+  payment_date = due_date
+WHERE client_id = (SELECT client_id
+  FROM clients
+  WHERE name = 'Myworks')
+
+
+// Example 2 is similar to example 1. Here, the subquery returns multiple results (ie 1, 3), so we need to replace = with IN at the WHERE clause.
+// If not sure what the subquery will return, highlight the subquery with mouse and then run that block of query.
+-- Example 2
+
+USE sql_invoicing;
+UPDATE invoices
+SET 
+  payment_total = invoice_total * 0.5,
+  payment_date = due_date
+WHERE client_id IN (SELECT client_id
+  FROM clients
+  WHERE state IN ('CA', 'NY'))
+
+
+-- Example 3
+USE sql_invoicing;
+UPDATE invoices
+SET 
+  payment_total = invoice_total * 0.5,
+  payment_date = due_date
+WHERE payment_date IS NULL
+
+
+// In example 4, first return all customer_id that have points > 3000, this will be the subquery. Then update the orders table and update the 'comments' colument with SET.
+-- Example 4
+USE sql_store;
+UPDATE orders
+SET comments = 'Gold customer'
+WHERE customer_id IN (SELECT customer_id
+					  FROM customers
+					  WHERE points > 3000)
 ```
